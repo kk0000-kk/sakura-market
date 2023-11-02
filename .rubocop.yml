@@ -1,2 +1,6 @@
 inherit_gem:
   sgcop: rails/rubocop.yml
+
+AllCops:
+  Exclude:
+    - "bin/**/*"
