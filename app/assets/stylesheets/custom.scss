@@ -1,1 +1,25 @@
 @import "bootstrap";
+
+body {
+  padding: 1rem;
+}
+
+.form-signin {
+  display: grid;
+  padding: 1rem;
+
+  .field {
+    display: grid;
+    width: 100%;
+    max-width: 600px;
+    justify-self: center;
+    margin-bottom: 2rem;
+  }
+
+  .actions {
+    display: grid;
+    width: 100%;
+    max-width: 600px;
+    justify-self: center;
+  }
+}
