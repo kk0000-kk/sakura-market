@@ -1,2 +1,6 @@
-# sakura-market
-rails study
+# さくらマーケット（EC サイトのサンプルアプリケーション）
+
+## 環境構築方法
+
+- Git クローンする
+- `$ bundle install`
