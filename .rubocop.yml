@@ -3,4 +3,5 @@ inherit_gem:
 
 AllCops:
   Exclude:
+    - "db/**/*"
     - "bin/**/*"
