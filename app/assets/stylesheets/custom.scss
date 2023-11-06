@@ -4,7 +4,7 @@ body {
   padding: 1rem;
 }
 
-.form-signin {
+.form-signup {
   display: grid;
   padding: 1rem;
 
@@ -22,4 +22,8 @@ body {
     max-width: 600px;
     justify-self: center;
   }
+}
+
+.form-signin {
+  @extend .form-signup;
 }
