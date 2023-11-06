@@ -1,0 +1,13 @@
+<nav class='navbar fixed-top navbar-expand-lg navbar-dark bg-dark'>
+  <div class='container-fluid'>
+    <%= link_to 'さくらマーケット', root_path, id: 'logo' %>
+    <% if user_signed_in? %>
+    <div class='d-flex flex-row'>
+      <div class='mx-1'><%= link_to '設定', edit_user_registration_path %></div>
+      <div class='mx-1'><%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete } %></div>
+    </div>
+    <% else %>
+      <li class='mx-1'><%= link_to 'ログイン', user_session_path %></li>
+    <% end %>
+  </div>
+</nav>

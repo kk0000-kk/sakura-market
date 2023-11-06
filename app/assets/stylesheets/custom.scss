@@ -1,7 +1,24 @@
 @import "bootstrap";
 
 body {
-  padding: 1rem;
+  padding-top: 60px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  font-weight: bold;
+  text-decoration: none;
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+  }
 }
 
 .form-signup {
@@ -26,4 +43,11 @@ body {
 
 .form-signin {
   @extend .form-signup;
+}
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
 }
