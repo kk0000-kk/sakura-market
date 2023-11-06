@@ -21,30 +21,6 @@ body {
   }
 }
 
-.form-signup {
-  display: grid;
-  padding: 1rem;
-
-  .field {
-    display: grid;
-    width: 100%;
-    max-width: 600px;
-    justify-self: center;
-    margin-bottom: 2rem;
-  }
-
-  .actions {
-    display: grid;
-    width: 100%;
-    max-width: 600px;
-    justify-self: center;
-  }
-}
-
-.form-signin {
-  @extend .form-signup;
-}
-
 .debug_dump {
   clear: both;
   float: left;
