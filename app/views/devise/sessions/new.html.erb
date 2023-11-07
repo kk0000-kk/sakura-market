@@ -1,15 +1,17 @@
-<h2>Log in</h2>
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <%= render 'devise/shared/error_messages', resource: resource %>
-  <div class='d-grid'>
-    <%= f.input :email, autofocus: true, input_html: { size: 600 } %>
-    <%= f.input :password %>
-    <% if devise_mapping.rememberable? %>
-      <%= f.input :remember_me, as: :boolean  %>
-    <% end %>
-    <%= f.button :submit ,'Log in', class: 'btn btn-primary my-3' %>
+<div class='container'>
+  <h2>Log in</h2>
+  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= render 'devise/shared/error_messages', resource: resource %>
+    <div class='d-grid'>
+      <%= f.input :email, autofocus: true %>
+      <%= f.input :password %>
+      <% if devise_mapping.rememberable? %>
+        <%= f.input :remember_me, as: :boolean  %>
+      <% end %>
+      <%= f.button :submit ,'Log in', class: 'btn btn-primary my-3' %>
+    </div>
+  <% end %>
+  <div class='text-center'>
+    <%= render 'devise/shared/links' %>
   </div>
-<% end %>
-<div class='text-center'>
-  <%= render 'devise/shared/links' %>
 </div>
