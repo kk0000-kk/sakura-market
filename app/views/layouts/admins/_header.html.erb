@@ -1,0 +1,12 @@
+<nav class='navbar fixed-top bg-primary' data-bs-theme='dark'>
+  <div class='container-fluid'>
+    <a class='navbar-brand' href='/admins'>【管理者】さくらマーケット</a>
+    <% if admin_signed_in? %>
+      <div class='d-flex flex-row'>
+        <div class='mx-1'><%= link_to 'ログアウト', destroy_admin_session_path, data: { turbo_method: :delete } %></div>
+      </div>
+    <% else %>
+      <div class='mx-1'><%= link_to 'ログイン', admin_session_path %></div>
+    <% end %>
+  </div>
+</nav>

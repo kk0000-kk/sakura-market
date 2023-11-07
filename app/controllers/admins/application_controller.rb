@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-class Admins::PasswordsController < Devise::PasswordsController
+class Admins::ApplicationController < ApplicationController
   layout 'admins/application'
 end
