@@ -4,7 +4,7 @@ class Admins::SessionsController < Devise::SessionsController
   layout 'admins/application'
 
   def after_sign_in_path_for(resource)
-    admins_root_path
+    stored_location_for(resource) || admins_root_path
   end
 
   def after_sign_out_path_for(resource)
