@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   devise_for :admins, controllers: { sessions: 'admins/sessions', passwords: 'admins/passwords' }
-  devise_for :users, controllers: { registrations: 'users/registrations', passwords: 'users/passwords', sessions: 'users/sessions' }
+  devise_for :users, controllers: { registrations: 'users/registrations' }
 
   namespace :admins do
     root 'static_pages#index'

@@ -8,7 +8,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-  <body>
+  <body class='application_body'>
     <%= render 'layouts/admins/header' %>
     <div class="container-fluid">
       <% flash.each do |message_type, message| %>
@@ -16,6 +16,8 @@
       <% end %>
       <%= yield %>
     </div>
-    <%= debug(params) if Rails.env.development? %>
+    <div class='mt-4'>
+      <%= debug(params) if Rails.env.development? %>
+    </div>
   </body>
 </html>
