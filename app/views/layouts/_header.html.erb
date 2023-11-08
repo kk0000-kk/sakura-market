@@ -1,13 +1,15 @@
 <nav class='navbar fixed-top bg-dark border-bottom border-bottom-dark' data-bs-theme='dark'>
   <div class='container-fluid'>
     <%= link_to 'さくらマーケット', root_path, class: 'navbar-brand' %>
-    <% if user_signed_in? %>
-      <div class='d-flex flex-row'>
-        <div class='mx-1'><%= link_to '設定', edit_user_registration_path %></div>
-        <div class='mx-1'><%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete } %></div>
-      </div>
-    <% else %>
-      <li class='mx-1'><%= link_to 'ログイン', user_session_path %></li>
-    <% end %>
-  </div>
+      <ul class='navbar-nav right me-3'>
+        <% if user_signed_in? %>
+        <div class='d-flex flex-row'>
+            <li class='nav-item mx-1'><%= link_to '設定', edit_user_registration_path %></li>
+            <li class='nav-item mx-1'><%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete } %></li>
+        </div>
+        <% else %>
+          <li class='nav-item'><%= link_to 'ログイン', user_session_path %></li>
+        <% end %>
+      </ul>
+    </div>
 </nav>
