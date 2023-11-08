@@ -9,4 +9,4 @@
     <%= f.submit "Send me reset password instructions" %>
   </div>
 <% end %>
-<%= render "admins/shared/links" %>
+<%= link_to "Log in", new_session_path(resource_name) %>
