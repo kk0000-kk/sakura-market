@@ -5,8 +5,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   namespace :admins do
-    root 'static_pages#index'
-    get 'home', to: 'static_pages#home'
+    root 'static_pages#home'
   end
 
   root 'static_pages#index'
