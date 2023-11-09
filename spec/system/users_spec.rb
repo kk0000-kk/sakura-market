@@ -2,9 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Users', type: :system do
   describe 'ユーザーログイン' do
-    before do
-      create(:user, email: 'user@example.com', password: 'passwordpassword', password_confirmation: 'passwordpassword')
-    end
+    let!(:user) { create(:user, email: 'user@example.com', password: 'passwordpassword', password_confirmation: 'passwordpassword', nick_name: 'ニック') }
 
     context '認証情報が正しい場合' do
       it 'ユーザーはログインすると、/homeにリダイレクトされる' do
@@ -34,10 +32,7 @@ RSpec.describe 'Users', type: :system do
       end
 
       it 'ユーザーはログインしてからadmins_rootに行ってもログインを求められる' do
-        visit new_user_session_path
-        fill_in 'Email', with: 'user@example.com'
-        fill_in 'Password', with: 'passwordpassword'
-        click_button 'Log in'
+        login_as(user, scope: :user)
         visit admins_root_path
         expect(page).to have_current_path new_admin_session_path
       end
