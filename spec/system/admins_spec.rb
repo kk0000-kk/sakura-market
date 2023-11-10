@@ -45,4 +45,23 @@ RSpec.describe 'Admins', type: :system do
       end
     end
   end
+
+  describe '管理者削除' do
+    let!(:admin) { create(:admin, email: 'admin@example.com', password: 'passwordpassword', password_confirmation: 'passwordpassword') }
+
+    before do
+      create(:admin, email: 'admin-2@example.com', password: 'passwordpassword', password_confirmation: 'passwordpassword')
+    end
+
+    context '管理者でのログイン時' do
+      it '自分以外の管理者を削除できる' do
+        login_as(admin, scope: :admin)
+        visit admins_admins_path
+        click_link 'delete'
+        accept_confirm '削除しますが、よろしいですか?'
+        expect(page).to have_current_path admins_admins_path
+        expect(Admin.find_by(email: 'admin-2@example.com')).not_to be_present
+      end
+    end
+  end
 end
