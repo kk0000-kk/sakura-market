@@ -12,9 +12,6 @@ class Admins::AdminsController < Admins::ApplicationController
     @admin = Admin.new
   end
 
-  def edit
-  end
-
   def create
     @admin = Admin.new(admin_params)
 
@@ -23,6 +20,9 @@ class Admins::AdminsController < Admins::ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def edit
   end
 
   def update
