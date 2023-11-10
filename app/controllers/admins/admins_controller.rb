@@ -2,7 +2,7 @@ class Admins::AdminsController < Admins::ApplicationController
   before_action :set_admin, only: %i[show edit update destroy]
 
   def index
-    @admins = Admin.page(params[:page]).order(:id)
+    @admins = Admin.order(:id).page(params[:page])
   end
 
   def show
