@@ -1,11 +1,8 @@
 class Admins::AdminsController < Admins::ApplicationController
-  before_action :set_admin, only: %i[show edit update destroy]
+  before_action :set_admin, only: :destroy
 
   def index
     @admins = Admin.order(:id).page(params[:page])
-  end
-
-  def show
   end
 
   def new
@@ -19,17 +16,6 @@ class Admins::AdminsController < Admins::ApplicationController
       redirect_to admins_admins_url, notice: '管理者を作成しました'
     else
       render :new, status: :unprocessable_entity
-    end
-  end
-
-  def edit
-  end
-
-  def update
-    if @admin.update(admin_params)
-      redirect_to admins_admins_url, notice: '管理者の情報をアップデートしました'
-    else
-      render :edit, status: :unprocessable_entity
     end
   end
 
