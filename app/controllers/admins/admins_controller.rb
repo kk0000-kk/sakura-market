@@ -27,7 +27,7 @@ class Admins::AdminsController < Admins::ApplicationController
 
   def update
     if @admin.update(admin_params)
-      redirect_to admins_admin_url(@admin), notice: '管理者の情報をアップデートしました'
+      redirect_to admins_admins_url, notice: '管理者の情報をアップデートしました'
     else
       render :edit, status: :unprocessable_entity
     end
