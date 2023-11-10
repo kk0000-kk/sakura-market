@@ -5,14 +5,14 @@
     <%= link_to '追加', new_admins_admin_path, class: 'btn btn-primary mb-4' %>
   </div>
   <ul class='admins_management list-group'>
-    <% @admins.each do |admin|%>
+    <% @admins.each do |admin| %>
       <li class='list-group-item d-flex align-items-center'>
-        <%=admin.email%>
-        <% if current_admin.id != admin.id%>
-          <%= button_to '削除', admins_admin_path(admin) , method: :delete, data: {turbo_confirm: '削除しますが、よろしいですか?' }, class: 'btn btn-danger btn-sm ms-4' %>
+        <%= admin.email %>
+        <% unless current_admin == admin %>
+          <%= button_to '削除', admins_admin_path(admin), method: :delete, data: { turbo_confirm: '削除しますが、よろしいですか?' }, class: 'btn btn-danger btn-sm ms-4' %>
         <% end %>
       </li>
-    <%end%>
+    <% end %>
   </ul>
   <%= paginate @admins, theme: 'bootstrap-5' %>
 </div>
