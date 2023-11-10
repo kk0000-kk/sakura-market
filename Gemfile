@@ -7,7 +7,6 @@ ruby '3.2.2'
 gem 'active_storage_validations'
 gem 'bootsnap', require: false
 gem 'bootstrap'
-gem 'bootstrap5-kaminari-views'
 gem 'devise'
 gem 'faker'
 gem 'image_processing'
