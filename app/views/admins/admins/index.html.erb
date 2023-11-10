@@ -1,0 +1,16 @@
+<h1 class='mb-4'>管理者一覧</h1>
+<div class='d-flex flex-row justify-content-between'>
+  <%= paginate @admins, theme: 'bootstrap-5' %>
+  <button type="button" class="btn btn-primary mb-4">追加</button>
+</div>
+<ul class='admins_management list-group mb-4'>
+  <% @admins.each do |admin|%>
+  <li class='list-group-item'>
+    <%=admin.email%>
+    <% if current_admin.id != admin.id%>
+    | <%= link_to 'delete', admins_admin_path(admin) ,data: { 'turbo-method': :delete, turbo_confirm: '削除しますが、よろしいですか?' } %>
+  <% end %>
+  </li>
+  <%end%>
+</ul>
+<%= paginate @admins, theme: 'bootstrap-5' %>

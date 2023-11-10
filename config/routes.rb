@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   namespace :admins do
     root 'static_pages#home'
+    resources :admins
   end
 
   root 'static_pages#index'
