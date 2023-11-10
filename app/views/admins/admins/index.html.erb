@@ -1,6 +1,6 @@
 <div class='container d-flex flex-column gap-2'>
   <h2>管理者一覧</h1>
-  <div class='d-flex flex-row justify-content-between'>
+  <div class='d-flex justify-content-between'>
     <%= paginate @admins, theme: 'bootstrap-5' %>
     <%= link_to '追加', new_admins_admin_path, class: 'btn btn-primary mb-4' %>
   </div>
