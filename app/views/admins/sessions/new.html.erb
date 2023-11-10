@@ -1,17 +1,17 @@
 <div class='container'>
   <h2>Log in</h2>
   <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <%= render 'admins/shared/error_messages', resource: resource %>
+    <%= render 'admins/shared/error_messages', resource: %>
     <div class='d-grid'>
       <%= f.input :email, autofocus: true %>
       <%= f.input :password %>
       <% if devise_mapping.rememberable? %>
-        <%= f.input :remember_me, as: :boolean  %>
+        <%= f.input :remember_me, as: :boolean %>
       <% end %>
-      <%= f.button :submit ,'Log in', class: 'btn btn-primary my-3' %>
+      <%= f.button :submit, 'Log in', class: 'btn btn-primary my-3' %>
     </div>
   <% end %>
   <div class='text-center'>
-    <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+    <%= link_to 'Forgot your password?', new_password_path(resource_name) %>
   </div>
 </div>
