@@ -19,7 +19,7 @@ class Admins::AdminsController < Admins::ApplicationController
     @admin = Admin.new(admin_params)
 
     if @admin.save
-      redirect_to admins_admin_url(@admin), notice: '管理者を作成しました'
+      redirect_to admins_admins_url, notice: '管理者を作成しました'
     else
       render :new, status: :unprocessable_entity
     end
@@ -45,6 +45,6 @@ class Admins::AdminsController < Admins::ApplicationController
   end
 
   def admin_params
-    params.fetch(:admins_admin, {})
+    params.require(:admins).permit(:email, :password, :password_confirmation)
   end
 end

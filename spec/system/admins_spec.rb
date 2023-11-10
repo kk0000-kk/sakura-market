@@ -26,4 +26,23 @@ RSpec.describe 'Admins', type: :system do
       end
     end
   end
+
+  describe '管理者作成' do
+    let!(:admin) { create(:admin, email: 'admin@example.com', password: 'passwordpassword', password_confirmation: 'passwordpassword') }
+
+    context '管理者でのログイン時' do
+      it '管理者を作成できる' do
+        login_as(admin, scope: :admin)
+        visit admins_admins_path
+        click_link '追加'
+        expect(page).to have_current_path new_admins_admin_path
+        fill_in 'Email', with: 'additional-admin@example.com'
+        fill_in 'Password', with: 'passwordpassword'
+        fill_in 'Password confirmation', with: 'passwordpassword'
+        click_button '追加する'
+        expect(page).to have_current_path admins_admins_path
+        expect(Admin.find_by(email: 'additional-admin@example.com')).to be_present
+      end
+    end
+  end
 end

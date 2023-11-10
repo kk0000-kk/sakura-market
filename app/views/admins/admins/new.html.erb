@@ -1,6 +1,14 @@
-<h1>New admins admin</h1>
-<%= render "form", admins_admin: @admin %>
-<br>
-<div>
-  <%= link_to "Back to admins admins", admins_admins_path %>
+<div class='container'>
+  <h2>管理者追加</h2>
+  <%= simple_form_for(@admin, as: 'admins', url: admins_admins_path)  do |f| %>
+    <div class='d-grid'>
+      <%= f.input :email, autofocus: true %>
+      <%= f.input :password, hint: "(#{@minimum_password_length}文字以上)" %>
+      <%= f.input :password_confirmation %>
+      <%= f.button :submit ,'追加する', class: 'btn btn-primary my-3' %>
+    </div>
+  <% end %>
+  <div class='text-center'>
+  <%= link_to '管理者一覧に戻る', admins_admins_path %>
+  </div>
 </div>
