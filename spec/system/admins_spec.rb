@@ -57,7 +57,7 @@ RSpec.describe 'Admins', type: :system do
       it '自分以外の管理者を削除できる' do
         login_as(admin, scope: :admin)
         visit admins_admins_path
-        click_link 'delete'
+        click_button '削除', match: :first
         accept_confirm '削除しますが、よろしいですか?'
         expect(page).to have_current_path admins_admins_path
         expect(Admin.find_by(email: 'admin-2@example.com')).not_to be_present
