@@ -3,10 +3,10 @@
     <%= link_to '【管理者】さくらマーケット', admins_root_path, class: 'navbar-brand' %>
     <ul class='navbar-nav right flex-row me-3'>
       <% if admin_signed_in? %>
-        <li class='nav-item mx-1'><%= link_to '管理者一覧', admins_admins_path %></li>
-        <li class='nav-item mx-1'><%= link_to 'ログアウト', destroy_admin_session_path, data: { turbo_method: :delete } %></li>
+        <li class='nav-item'><%= button_to '管理者一覧', admins_admins_path, method: :get, class: 'btn' %></li>
+        <li class='nav-item'><%= button_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'btn' %></li>
       <% else %>
-        <li class='nav-item'><%= link_to 'ログイン', admin_session_path %></li>
+        <li class='nav-item'><%= button_to 'ログイン', admin_session_path, method: :get, class: 'btn' %></li>
       <% end %>
     </ul>
   </div>
