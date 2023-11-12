@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   namespace :admins do
     root 'static_pages#home'
     resources :admins, only: %i[index new create destroy]
+    resources :users, only: %i[index destroy]
   end
 
   root 'static_pages#index'

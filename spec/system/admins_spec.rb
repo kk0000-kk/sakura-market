@@ -66,4 +66,24 @@ RSpec.describe 'Admins', type: :system do
       expect(Admin.find_by(email: 'admin-other@example.com')).to be_blank
     end
   end
+
+  describe 'ユーザー削除' do
+    let!(:admin) { create(:admin) }
+
+    before do
+      create(:user, email: 'user@example.com')
+    end
+
+    it 'ユーザーを削除できる' do
+      login_as(admin, scope: :admin)
+      visit admins_users_path
+      expect do
+        click_button '削除', match: :first
+        accept_confirm '削除しますが、よろしいですか?'
+        expect(page).to have_current_path admins_users_path
+        expect(page).to have_content 'ユーザーを削除しました'
+      end.to change(User, :count).by(-1)
+      expect(User.find_by(email: 'user@example.com')).to be_blank
+    end
+  end
 end
