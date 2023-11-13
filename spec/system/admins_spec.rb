@@ -51,7 +51,7 @@ RSpec.describe 'Admins', type: :system do
     let!(:admin) { create(:admin) }
 
     before do
-      create(:admin, email: 'admin-other@example.com', password: 'passwordpassword', password_confirmation: 'passwordpassword')
+      create(:admin, email: 'admin-other@example.com')
     end
 
     it '自分以外の管理者を削除できる' do
