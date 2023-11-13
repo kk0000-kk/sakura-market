@@ -1,6 +1,6 @@
 <div class='container'>
   <h2>管理者追加</h2>
-  <%= simple_form_for(@admin, as: 'admins', url: admins_admins_path)  do |f| %>
+  <%= simple_form_for(@admin, url: admins_admins_path)  do |f| %>
     <div class='d-grid'>
       <%= f.input :email, autofocus: true %>
       <%= f.input :password, hint: "(#{@minimum_password_length}文字以上)" %>
