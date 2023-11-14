@@ -1,3 +1,5 @@
-<li class="page-item">
-  <%= link_to_unless current_page.first?, raw(t('views.pagination.previous')), url, rel: 'prev', remote:, class: 'page-link' %>
-</li>
+<% unless current_page.first? %>
+  <li class="page-item">
+    <%= link_to_unless current_page.first?, raw(t('views.pagination.previous')), url, rel: 'prev', remote:, class: 'page-link' %>
+  </li>
+<% end %>
