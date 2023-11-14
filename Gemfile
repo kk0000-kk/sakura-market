@@ -28,6 +28,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'erb_lint'
   gem 'rubocop'
   gem 'sgcop', github: 'SonicGarden/sgcop'
   gem 'solargraph'

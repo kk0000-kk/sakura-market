@@ -1,0 +1,18 @@
+<div class='container d-flex flex-column gap-2'>
+  <h2>管理者一覧</h1>
+  <div class='d-flex justify-content-between'>
+    <%= paginate @admins %>
+    <%= link_to '追加', new_admins_admin_path, class: 'btn btn-primary' %>
+  </div>
+  <ul class='admins_management list-group'>
+    <% @admins.each do |admin| %>
+      <li class='list-group-item d-flex align-items-center'>
+        <%= admin.email %>
+        <% unless current_admin == admin %>
+          <%= button_to '削除', admins_admin_path(admin), method: :delete, data: { turbo_confirm: '削除しますが、よろしいですか?' }, class: 'btn btn-danger btn-sm ms-4' %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <%= paginate @admins %>
+</div>

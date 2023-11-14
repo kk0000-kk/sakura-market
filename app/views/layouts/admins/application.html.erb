@@ -5,14 +5,18 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag 'application', 'data-turbo-track': 'reload' %>
     <%= javascript_importmap_tags %>
   </head>
   <body class='application_body'>
     <%= render 'layouts/admins/header' %>
     <div class="container-fluid">
       <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type == 'notice' ? 'success' : (message_type == 'alert' ? 'danger' : message_type)  %>"><%= message %></div>
+        <div class="alert alert-<%= if message_type == 'notice'
+                                      'success'
+                                    else
+                                      (message_type == 'alert' ? 'danger' : message_type)
+                                    end %>"><%= message %></div>
       <% end %>
       <%= yield %>
     </div>
