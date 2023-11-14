@@ -2,7 +2,7 @@
   <h2>管理者一覧</h1>
   <div class='d-flex justify-content-between'>
     <%= paginate @admins %>
-    <%= link_to '追加', new_admins_admin_path, class: 'btn btn-primary mb-4' %>
+    <%= link_to '追加', new_admins_admin_path, class: 'btn btn-primary' %>
   </div>
   <ul class='admins_management list-group'>
     <% @admins.each do |admin| %>
