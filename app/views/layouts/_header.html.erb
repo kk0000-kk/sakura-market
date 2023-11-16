@@ -1,7 +1,7 @@
 <nav class='navbar fixed-top bg-dark border-bottom border-bottom-dark' data-bs-theme='dark'>
   <div class='container-fluid'>
     <%= link_to 'さくらマーケット', root_path, class: 'navbar-brand' %>
-    <ul class='navbar-nav right me-3'>
+    <ul class='navbar-nav'>
       <% if user_signed_in? %>
         <div class='d-flex flex-row'>
           <li class='nav-item mx-1'><%= link_to '設定', edit_user_registration_path %></li>
