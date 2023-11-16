@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 ruby '3.2.2'
 
 gem 'active_storage_validations'
+gem 'acts_as_list'
 gem 'bootsnap', require: false
 gem 'bootstrap'
 gem 'devise'
