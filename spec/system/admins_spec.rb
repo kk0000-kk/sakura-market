@@ -58,8 +58,7 @@ RSpec.describe 'Admins', type: :system do
       login_as(admin, scope: :admin)
       visit admins_admins_path
       expect do
-        click_button '削除', match: :first
-        accept_confirm '削除しますが、よろしいですか?'
+        accept_confirm { click_button '削除', match: :first }
         expect(page).to have_current_path admins_admins_path
         expect(page).to have_content '管理者を削除しました'
       end.to change(Admin, :count).by(-1)
@@ -78,8 +77,7 @@ RSpec.describe 'Admins', type: :system do
       login_as(admin, scope: :admin)
       visit admins_users_path
       expect do
-        click_button '削除', match: :first
-        accept_confirm '削除しますが、よろしいですか?'
+        accept_confirm { click_button '削除', match: :first }
         expect(page).to have_current_path admins_users_path
         expect(page).to have_content 'ユーザーを削除しました'
       end.to change(User, :count).by(-1)
