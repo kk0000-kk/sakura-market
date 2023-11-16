@@ -1,14 +1,27 @@
 <div class='container d-flex flex-column gap-2'>
   <h2>ユーザー一覧</h1>
-  <%= paginate @users, theme: 'bootstrap-5' %>
-  <ul class='list-group'>
-    <% @users.each do |user| %>
-      <li class='list-group-item d-flex align-items-center'>
-        <%= user.nick_name %>
-        <%= "<#{user.email}>" %>
-        <%= button_to '削除', admins_user_path(user), method: :delete, data: { turbo_confirm: '削除しますが、よろしいですか?' }, class: 'btn btn-danger btn-sm ms-4' %>
-      </li>
-    <% end %>
-  </ul>
-  <%= paginate @users, theme: 'bootstrap-5' %>
+  <%= paginate @users %>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">ニックネーム</th>
+        <th scope="col">メールアドレス</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      <% @users.each do |user| %>
+        <tr>
+          <th scope="row"><%= user.id %></th>
+          <td><%= user.nick_name %></td>
+          <td><%= user.email %></td>
+          <td>
+            <%= button_to '削除', admins_user_path(user), method: :delete, data: { turbo_confirm: '削除しますが、よろしいですか?' }, class: 'btn btn-danger btn-sm' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @users %>
 </div>
