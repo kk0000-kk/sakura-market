@@ -1,5 +1,6 @@
 exclude:
   - "**/vendor/**/*"
+  - "**/kaminari/*"
 EnableDefaultLinters: true
 linters:
   Rubocop:
