@@ -1,6 +1,7 @@
-<h1>New product</h1>
-<%= render partial: 'form', locals: {url: admins_products_url, product: @product, button_label: '追加する'} %>
-<br>
-<div>
-  <%= link_to 'Back to products', admins_products_path %>
+<div class='container'>
+  <h2>商品追加</h2>
+  <%= render partial: 'form', locals: {url: admins_products_url, product: @product, button_label: '追加する'} %>
+  <div class="mt-4">
+    <%= link_to '一覧へ戻る', admins_products_path %>
+  </div>
 </div>
