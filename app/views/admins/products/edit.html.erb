@@ -1,7 +1,7 @@
-<h1>Editing product</h1>
-<%= render 'form', product: @product %>
-<br>
-<div>
-  <%= link_to 'Show this product', admins_product_path(@product) %> |
-  <%= link_to 'Back to products', admins_products_path %>
+<div class='container'>
+  <h2>商品編集</h2>
+  <%= render partial: 'form', locals: { url: admins_product_url(@product), product: @product, button_label: '更新する' } %>
+  <div class="mt-4">
+    <%= link_to '一覧へ戻る', admins_products_path %>
+  </div>
 </div>
