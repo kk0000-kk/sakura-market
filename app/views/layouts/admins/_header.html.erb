@@ -5,6 +5,7 @@
       <% if admin_signed_in? %>
         <li class='nav-item'><%= link_to '管理者一覧', admins_admins_path, method: :get, class: 'btn' %></li>
         <li class='nav-item'><%= link_to 'ユーザー一覧', admins_users_path, method: :get, class: 'btn' %></li>
+        <li class='nav-item'><%= link_to '商品一覧', admins_products_path, method: :get, class: 'btn' %></li>
         <li class='nav-item'><%= button_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'btn' %></li>
       <% else %>
         <li class='nav-item'><%= link_to 'ログイン', admin_session_path, method: :get, class: 'btn' %></li>
