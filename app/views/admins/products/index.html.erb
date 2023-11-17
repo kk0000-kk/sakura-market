@@ -1,11 +1,37 @@
-<p style="color: green"><%= notice %></p>
-<h1>Products</h1>
-<div id="products">
-  <% @products.each do |product| %>
-    <%= render product %>
-    <p>
-      <%= link_to 'Show this product', admins_product_path(product) %>
-    </p>
-  <% end %>
+<div class='container d-flex flex-column gap-2'>
+  <h2>商品一覧</h1>
+  <div class='d-flex justify-content-between'>
+    <%= paginate @products %>
+    <%= link_to '追加', new_admins_product_path, class: 'btn btn-primary' %>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">表示順</th>
+        <th scope="col">商品名</th>
+        <th scope="col">価格（税抜）</th>
+        <th scope="col">説明</th>
+        <th scope="col">非表示</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      <% @products.each do |product| %>
+        <tr>
+          <th scope="row"><%= product.position %></th>
+          <td><%= product.name %></td>
+          <td><%= number_with_delimiter(product.price) %></td>
+          <td><%= product.description %></td>
+          <td><%= product.disabled %></td>
+          <td>
+            <div class="d-flex gap-4">
+              <%= link_to '編集', admins_product_path(product), class: 'btn btn-primary btn-sm' %>
+              <%= button_to '削除', admins_product_path(product), method: :delete, data: { turbo_confirm: '削除しますが、よろしいですか?' }, class: 'btn btn-danger btn-sm' %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @products %>
 </div>
-<%= link_to 'New product', new_admins_product_path %>
