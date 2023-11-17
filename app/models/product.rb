@@ -5,4 +5,5 @@ class Product < ApplicationRecord
   validates :name, presence: true
   validates :price, presence: true
   validates :position, presence: true
+  acts_as_list
 end
