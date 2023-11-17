@@ -14,6 +14,7 @@ class Admins::ProductsController < Admins::ApplicationController
 
   def create
     @product = Product.new(product_params)
+    @product.image.attach(params[:product][:image])
 
     if @product.save
       redirect_to edit_admins_product_url(@product), notice: '商品を作成しました'
@@ -46,6 +47,6 @@ class Admins::ProductsController < Admins::ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :price, :description, :disabled, :position)
+    params.require(:product).permit(:name, :price, :description, :disabled, :position, :image)
   end
 end

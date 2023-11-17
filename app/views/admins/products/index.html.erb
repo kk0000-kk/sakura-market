@@ -8,6 +8,7 @@
     <thead>
       <tr>
         <th scope="col">表示順</th>
+        <th scope="col"></th>
         <th scope="col">商品名</th>
         <th scope="col">価格（税抜）</th>
         <th scope="col">説明</th>
@@ -19,6 +20,7 @@
       <% @products.each do |product| %>
         <tr>
           <th scope="row"><%= product.position %></th>
+          <td><%= image_tag product.image, size: "32x32" if product.image.attached? %></td>
           <td><%= product.name %></td>
           <td><%= number_with_delimiter(product.price) %></td>
           <td><%= product.description %></td>

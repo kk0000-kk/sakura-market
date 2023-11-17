@@ -9,6 +9,8 @@
       </ul>
     </div>
   <% end %>
+  <%= image_tag product.image if product.image.attached? %>
+  <%= f.input :image, label: '画像' %>
   <%= f.input :name, label: '名前' %>
   <%= f.input :price, label: '価格（税抜）' %>
   <%= f.input :description, label: '説明' %>
