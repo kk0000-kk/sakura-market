@@ -20,7 +20,7 @@
       <% @products.each do |product| %>
         <tr>
           <th scope="row"><%= product.position %></th>
-          <td><%= image_tag product.image, size: "64x64" if product.image.attached? %></td>
+          <td><%= image_tag product.image, size: '64x64' if product.image.attached? %></td>
           <td><%= product.name %></td>
           <td><%= number_with_delimiter(product.price) %></td>
           <td><%= product.description %></td>
