@@ -1,4 +1,4 @@
-class ProductsController < ApplicationController
+class Admins::ProductsController < Admins::ApplicationController
   before_action :set_product, only: %i[show edit update destroy]
 
   def index
@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
 
     if @product.save
-      redirect_to product_url(@product), notice: '商品を作成しました'
+      redirect_to admins_product_url(@product), notice: '商品を作成しました'
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      redirect_to product_url(@product), notice: '商品情報を更新しました'
+      redirect_to admins_product_url(@product), notice: '商品情報を更新しました'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -36,7 +36,7 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy!
 
-    redirect_to products_url, notice: '商品を削除しました'
+    redirect_to admins_products_url, notice: '商品を削除しました'
   end
 
   private
