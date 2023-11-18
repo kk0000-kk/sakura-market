@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     root 'static_pages#home'
     resources :admins, only: %i[index new create destroy]
     resources :users, only: %i[index destroy]
-    resources :products
+    resources :products, only: %i[index new create edit update destroy]
   end
 
   root 'static_pages#index'

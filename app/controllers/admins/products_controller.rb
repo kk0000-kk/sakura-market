@@ -1,11 +1,8 @@
 class Admins::ProductsController < Admins::ApplicationController
-  before_action :set_product, only: %i[show edit update destroy]
+  before_action :set_product, only: %i[edit update destroy]
 
   def index
     @products = Product.order(:position).page(params[:page])
-  end
-
-  def show
   end
 
   def new
