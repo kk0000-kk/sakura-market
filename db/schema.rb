@@ -55,11 +55,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_17_050322) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string "name"
-    t.integer "price"
+    t.string "name", default: "", null: false
+    t.integer "price", null: false
     t.text "description"
-    t.boolean "disabled"
-    t.integer "position"
+    t.boolean "disabled", default: false, null: false
+    t.integer "position", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
