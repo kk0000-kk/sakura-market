@@ -1,14 +1,14 @@
 <nav class='navbar fixed-top bg-primary' data-bs-theme='dark'>
   <div class='container-fluid'>
     <%= link_to '【管理者】さくらマーケット', admins_root_path, class: 'navbar-brand' %>
-    <ul class='navbar-nav right flex-row me-3'>
+    <ul class='navbar-nav flex-row'>
       <% if admin_signed_in? %>
-        <li class='nav-item'><%= link_to '管理者一覧', admins_admins_path, class: 'btn' %></li>
-        <li class='nav-item'><%= link_to 'ユーザー一覧', admins_users_path, class: 'btn' %></li>
-        <li class='nav-item'><%= link_to '商品一覧', admins_products_path, class: 'btn' %></li>
-        <li class='nav-item'><%= button_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'btn' %></li>
+        <li class='nav-item'><%= link_to '管理者一覧', admins_admins_path, class: 'nav-link me-3' %></li>
+        <li class='nav-item'><%= link_to 'ユーザー一覧', admins_users_path, class: 'nav-link me-3' %></li>
+        <li class='nav-item'><%= link_to '商品一覧', admins_products_path, class: 'nav-link me-3' %></li>
+        <li class='nav-item'><%= button_to 'ログアウト', destroy_admin_session_path, method: :delete, class: 'nav-link me-3' %></li>
       <% else %>
-        <li class='nav-item'><%= link_to 'ログイン', admin_session_path, class: 'btn' %></li>
+        <li class='nav-item'><%= link_to 'ログイン', admin_session_path, class: 'nav-link me-3' %></li>
       <% end %>
     </ul>
   </div>
