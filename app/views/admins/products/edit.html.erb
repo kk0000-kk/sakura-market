@@ -1,6 +1,6 @@
 <div class='container'>
   <h2>商品編集</h2>
-  <%= render partial: 'form', locals: { url: admins_product_url(@product), product: @product } %>
+  <%= render 'form', url: admins_product_url(@product), product: @product %>
   <div class="mt-4">
     <%= link_to '一覧へ戻る', admins_products_path %>
   </div>
