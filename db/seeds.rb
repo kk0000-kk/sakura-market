@@ -25,5 +25,5 @@ end
   description = "商品-#{n + 1}の説明文です。"
   disabled = [true, false].sample
   position = n + 1
-  Product.create!(name:,price:,description:,disabled:,position:)
+  Product.create!(name:, price:, description:, disabled:, position:)
 end

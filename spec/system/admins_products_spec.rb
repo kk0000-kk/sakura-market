@@ -10,6 +10,7 @@ RSpec.describe 'Admins Products', type: :system do
       visit admins_products_path
       click_link '追加'
       expect(page).to have_current_path new_admins_product_path
+
       fill_in '商品名', with: '小倉ミルクパン'
       fill_in '価格（税抜）', with: 12345
       fill_in '説明', with: 'こだわりのミルクで作った美味しいパンです'
@@ -20,6 +21,7 @@ RSpec.describe 'Admins Products', type: :system do
         expect(page).to have_content '商品を作成しました'
         expect(page).to have_current_path admins_products_path
       end.to change(Product, :count).by(1)
+
       expect(Product.find_by(name: '小倉ミルクパン')).to be_present
     end
 
@@ -27,12 +29,14 @@ RSpec.describe 'Admins Products', type: :system do
       login_as(admin, scope: :admin)
       visit admins_products_path
       click_link '編集', match: :first
+
       fill_in '商品名', with: 'レーズンミルクパン'
       fill_in '価格（税抜）', with: 54321
       fill_in '説明', with: 'こだわりのミルクで作った美味しいパンです'
       check '無効'
       fill_in '表示順', with: 2
       click_button '更新する'
+
       expect(page).to have_content '商品情報を更新しました'
       expect(page).to have_current_path admins_products_path
       expect(Product.find_by(name: 'レーズンミルクパン')).to be_present
@@ -46,6 +50,7 @@ RSpec.describe 'Admins Products', type: :system do
         expect(page).to have_current_path admins_products_path
         expect(page).to have_content '商品を削除しました'
       end.to change(Product, :count).by(-1)
+
       expect(Product.find_by(name: 'メープルパン')).to be_blank
     end
   end
