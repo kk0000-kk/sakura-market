@@ -14,7 +14,6 @@ class Admins::ProductsController < Admins::ApplicationController
 
   def create
     @product = Product.new(product_params)
-    @product.image.attach(params[:product][:image])
 
     if @product.save
       redirect_to admins_products_url, notice: '商品を作成しました'
