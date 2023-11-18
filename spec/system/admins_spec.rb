@@ -9,8 +9,8 @@ RSpec.describe 'Admins', type: :system do
     context '認証情報が正しい場合' do
       it '管理者はログインすると、admins_rootにリダイレクトされる' do
         visit admins_root_path
-        fill_in 'Email', with: 'admin@example.com'
-        fill_in 'Password', with: 'passwordpassword'
+        fill_in 'メールアドレス', with: 'admin@example.com'
+        fill_in 'パスワード', with: 'passwordpassword'
         click_button 'Log in'
         expect(page).to have_current_path admins_root_path
       end
@@ -19,8 +19,8 @@ RSpec.describe 'Admins', type: :system do
     context '認証情報が正しくない場合' do
       it 'ログインに失敗するとログイン画面のまま' do
         visit admins_root_path
-        fill_in 'Email', with: 'admin@example.com'
-        fill_in 'Password', with: 'machigattapassword'
+        fill_in 'メールアドレス', with: 'admin@example.com'
+        fill_in 'パスワード', with: 'machigattapassword'
         click_button 'Log in'
         expect(page).to have_current_path new_admin_session_path
       end
@@ -35,11 +35,11 @@ RSpec.describe 'Admins', type: :system do
       visit admins_admins_path
       click_link '追加'
       expect(page).to have_current_path new_admins_admin_path
-      fill_in 'Email', with: 'additional-admin@example.com'
-      fill_in 'Password', with: 'passwordpassword'
-      fill_in 'Password confirmation', with: 'passwordpassword'
+      fill_in 'メールアドレス', with: 'additional-admin@example.com'
+      fill_in 'パスワード', with: 'passwordpassword'
+      fill_in 'パスワード（確認）', with: 'passwordpassword'
       expect do
-        click_button '追加する'
+        click_button '作成する'
         expect(page).to have_current_path admins_admins_path
         expect(page).to have_content '管理者を作成しました'
       end.to change(Admin, :count).by(1)

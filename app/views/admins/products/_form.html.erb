@@ -10,11 +10,11 @@
     </div>
   <% end %>
   <%= image_tag product.image.variant(:display) if product.image.attached? %>
-  <%= f.input :image, label: '画像' %>
-  <%= f.input :name, label: '名前' %>
-  <%= f.input :price, label: '価格（税抜）' %>
-  <%= f.input :description, label: '説明' %>
-  <%= f.input :position, label: '表示順' %>
-  <%= f.input :disabled, label: '非表示' %>
-  <%= f.button :submit, button_label, class: 'btn btn-primary my-3' %>
+  <%= f.input :image %>
+  <%= f.input :name %>
+  <%= f.input :price %>
+  <%= f.input :description %>
+  <%= f.input :position %>
+  <%= f.input :disabled %>
+  <%= f.button :submit, class: 'btn btn-primary my-3' %>
 <% end %>
