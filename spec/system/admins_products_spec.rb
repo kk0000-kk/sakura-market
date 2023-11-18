@@ -18,9 +18,9 @@ RSpec.describe 'Admins Products', type: :system do
       expect do
         click_button '追加する'
         expect(page).to have_content '商品を作成しました'
+        expect(page).to have_current_path admins_products_path
       end.to change(Product, :count).by(1)
       expect(Product.find_by(name: '小倉ミルクパン')).to be_present
-      expect(page).to have_current_path edit_admins_product_path(Product.find_by(name: '小倉ミルクパン'))
     end
 
     it '商品を編集できる' do
@@ -34,8 +34,8 @@ RSpec.describe 'Admins Products', type: :system do
       fill_in '表示順', with: 2
       click_button '更新する'
       expect(page).to have_content '商品情報を更新しました'
+      expect(page).to have_current_path admins_products_path
       expect(Product.find_by(name: 'レーズンミルクパン')).to be_present
-      expect(page).to have_current_path edit_admins_product_path(Product.find_by(name: 'レーズンミルクパン'))
     end
 
     it '商品を削除できる' do

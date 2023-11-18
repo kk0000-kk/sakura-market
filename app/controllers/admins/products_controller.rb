@@ -17,7 +17,7 @@ class Admins::ProductsController < Admins::ApplicationController
     @product.image.attach(params[:product][:image])
 
     if @product.save
-      redirect_to edit_admins_product_url(@product), notice: '商品を作成しました'
+      redirect_to admins_products_url, notice: '商品を作成しました'
     else
       render :new, status: :unprocessable_entity
     end
@@ -28,7 +28,7 @@ class Admins::ProductsController < Admins::ApplicationController
 
   def update
     if @product.update(product_params)
-      redirect_to edit_admins_product_url(@product), notice: '商品情報を更新しました'
+      redirect_to admins_products_url, notice: '商品情報を更新しました'
     else
       render :edit, status: :unprocessable_entity
     end
