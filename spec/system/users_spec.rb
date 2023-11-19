@@ -32,7 +32,7 @@ RSpec.describe 'Users', type: :system do
       end
 
       it 'ユーザーはログインしてからadmins_rootに行ってもログインを求められる' do
-        login_as(user, scope: :user)
+        login_as(user)
         visit admins_root_path
         expect(page).to have_current_path new_admin_session_path
       end
