@@ -1,6 +1,7 @@
 <div class="card text-bg-light my-2">
   <div class="card-body text-center">
     <h1 class="card-title mb-4">さくらマーケットへようこそ</h1>
-    <%= link_to 'サインアップしてください!', new_user_registration_path, class: 'btn btn-lg btn-primary' %>
+    <%= link_to 'サインアップしてください!', new_user_registration_path, class: 'btn btn-lg btn-primary' unless user_signed_in? %>
   </div>
 </div>
+<%= render 'products/products_list', products: @products %>
