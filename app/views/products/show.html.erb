@@ -2,7 +2,7 @@
   <h2>商品詳細</h2>
   <div class="d-flex flex-column gap-4">
     <div class="border text-center">
-      <%= @product.image.attached? ? (image_tag @product.image.variant(:page_display)) : "画像なし" %>
+      <%= @product.image.attached? ? (image_tag @product.image.variant(:page_display)) : '画像なし' %>
     </div>
     <table class="table table-bordered">
       <tbody>
