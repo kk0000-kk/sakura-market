@@ -1,0 +1,11 @@
+<%= simple_form_for(@product, url:) do |f| %>
+  <%= render 'shared/error', resource: @product %>
+  <%= image_tag product.image.variant(:page_display) if product.image.attached? %>
+  <%= f.input :image %>
+  <%= f.input :name %>
+  <%= f.input :price %>
+  <%= f.input :description %>
+  <%= f.input :position %>
+  <%= f.input :disabled %>
+  <%= f.button :submit, class: 'btn btn-primary' %>
+<% end %>

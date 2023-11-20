@@ -1,0 +1,10 @@
+<% if resource.errors.any? %>
+  <div class="text-danger">
+    <h2><%= resource.errors.count %> 件のエラーが発生したため、保存されませんでした。:</h2>
+    <ul>
+      <% resource.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

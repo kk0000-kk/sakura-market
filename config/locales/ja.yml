@@ -1,0 +1,25 @@
+ja:
+  simple_form:
+    labels:
+      admin:
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認）"
+        remember_me: "ログイン状態を保持する"
+      user:
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認）"
+        remember_me: "ログイン状態を保持する"
+        nick_name: "ニックネーム"
+      product:
+        name: "商品名"
+        price: "価格（税抜）"
+        description: "説明"
+        image: "画像"
+        position: "表示順"
+        disabled: "無効"
+  helpers:
+    submit:
+      create: "作成する"
+      update: "更新する"
