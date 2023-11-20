@@ -15,7 +15,8 @@ RSpec.describe 'Products', type: :system do
 
     context 'ユーザーがログインしている場合' do
       it '商品を閲覧できる' do
-        login_as(user)
+        login_as(user, scope: :user)
+        visit root_path
         expect(page).to have_current_path root_path
         click_link '詳細', match: :first
         expect(page).to have_current_path product_path(product)
