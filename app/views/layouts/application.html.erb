@@ -10,7 +10,7 @@
   </head>
   <body class='application_body'>
     <%= render 'layouts/header' %>
-    <div class="container-fluid">
+    <div class="container-fluid bg-light">
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= if message_type == 'notice'
                                       'success'

@@ -1,28 +1,34 @@
-<%= paginate products %>
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col"></th>
-      <th scope="col">商品名</th>
-      <th scope="col">価格（税抜）</th>
-      <th scope="col">説明</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody class="table-group-divider">
-    <% products.each do |product| %>
-      <tr>
-        <th scope="row"><%= product.id %></th>
-        <td><%= image_tag product.image.variant(:page_display), size: '64x64' if product.image.attached? %></td>
-        <td><%= product.name %></td>
-        <td><%= number_with_delimiter(product.price) %></td>
-        <td><%= product.description %></td>
-        <td>
-          <%= link_to '詳細', product_path(product), class: 'btn btn-primary btn-sm' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= paginate products %>
+<div class="container">
+  <div class="vstack gap-3">
+    <%= paginate products %>
+    <div class="row">
+      <% products.each do |product| %>
+        <div class="col-3">
+          <div class="card text-center p-2 mb-3">
+            <div class="d-block mx-auto" style="width: 64px;">
+              <%= image_tag product.image.attached? ? product.image.variant(:page_display) : 'no_image.png', size: '64x64' %>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"><%= product.name %></h5>
+              <p class="card-text">
+                <div class="stack">
+                  <div>
+                    <%= number_with_delimiter(product.price_with_tax) %>円（税込）
+                  </div>
+                  <div style="font-size: 0.8rem;">
+                    （ <%= number_with_delimiter(product.price) %>円（税抜））
+                  </div>
+                </div>
+              </p>
+              <p class="card-text">
+                <%= product.description %>
+              </p>
+              <%= link_to '詳細', product_path(product), class: 'btn btn-primary btn-sm' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <%= paginate products %>
+  </div>
+</div>
