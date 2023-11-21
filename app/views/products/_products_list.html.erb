@@ -4,25 +4,26 @@
     <div class="row gy-3">
       <% products.each do |product| %>
         <div class="col-12 col-md-6 col-lg-3 col-xl-2">
-          <div class="card text-center p-2">
-            <div class="d-block mx-auto thumbnail">
-              <%= image_tag product.image.attached? ? product.image.variant(:thumbnail) : 'no_image.png', size: '64x64' %>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title"><%= product.name %></h5>
-              <p class="card-text">
-                <div class="stack">
-                  <div>
-                    <%= number_with_delimiter(product.price_with_tax) %>円（税込）
+          <%= link_to product_path(product), class: 'link-info link-underline link-underline-opacity-0 link-underline-opacity-100-hover' do %>
+            <div class="card text-center p-2">
+              <div class="d-block mx-auto thumbnail">
+                <%= image_tag product.image.attached? ? product.image.variant(:thumbnail) : 'no_image.png', size: '64x64' %>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title"><%= product.name %></h5>
+                <p class="card-text">
+                  <div class="stack">
+                    <div>
+                      <%= number_with_delimiter(product.price_with_tax) %>円（税込）
+                    </div>
                   </div>
-                </div>
-              </p>
-              <p class="card-text">
-                <%= product.description %>
-              </p>
-              <%= link_to '詳細', product_path(product), class: 'btn btn-primary btn-sm' %>
+                </p>
+                <p class="card-text">
+                  <%= product.description %>
+                </p>
+              </div>
             </div>
-          </div>
+          <% end %>
         </div>
       <% end %>
     </div>
