@@ -24,6 +24,13 @@
         </tr>
       </tbody>
     </table>
+    <div class="align-self-end">
+      <%= form_with url: cart_cart_items_path, model: CartItem do |f| %>
+        <%= f.hidden_field :product_id, value: @product.id %>
+        <%= f.hidden_field :quantity, value: 1 %>
+        <%= f.submit 'カートへ追加', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
   </div>
   <div class="mt-4">
     <%= link_to '一覧へ戻る', products_path %>

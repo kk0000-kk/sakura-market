@@ -3,3 +3,5 @@ RSpec.configure do |config|
     driven_by :selenium_chrome_headless
   end
 end
+
+RSpec::Matchers.define_negated_matcher :not_change, :change
