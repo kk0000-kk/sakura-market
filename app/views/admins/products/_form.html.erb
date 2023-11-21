@@ -1,6 +1,6 @@
 <%= simple_form_for(@product, url:) do |f| %>
   <%= render 'shared/error', resource: @product %>
-  <%= product_image(product, '') %>
+  <%= product_image(product, :page_display, '') %>
   <%= f.input :image %>
   <%= f.input :name %>
   <%= f.input :price %>

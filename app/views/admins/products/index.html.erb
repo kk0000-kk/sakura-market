@@ -21,7 +21,7 @@
         <% @products.each do |product| %>
           <tr>
             <th scope="row"><%= product.position %></th>
-            <td><%= product_image(product, '64x64') %></td>
+            <td><%= product_image(product, :thumbnail, '64x64') %></td>
             <td><%= product.name %></td>
             <td><%= number_with_delimiter(product.price) %></td>
             <td><%= product.description %></td>

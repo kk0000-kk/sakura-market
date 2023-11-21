@@ -7,7 +7,7 @@
           <%= link_to product_path(product), id: 'product-show-link', class: 'link-info link-underline link-underline-opacity-0 link-underline-opacity-100-hover' do %>
             <div class="card text-center p-2">
               <div class="d-block mx-auto thumbnail">
-                <%= product_image(product, '64x64') %>
+                <%= product_image(product, :thumbnail, '64x64') %>
               </div>
               <div class="card-body">
                 <h5 class="card-title"><%= product.name %></h5>
