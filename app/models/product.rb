@@ -6,5 +6,10 @@ class Product < ApplicationRecord
   validates :name, presence: true
   validates :price, presence: true, numericality: { greater_than: 0 }
   validates :position, presence: true
+
   acts_as_list
+
+  scope :purchasable, -> {
+    where(disabled: false)
+  }
 end
