@@ -6,7 +6,7 @@
         <div class="col-12 col-md-6 col-lg-3 col-xl-2">
           <div class="card text-center p-2">
             <div class="d-block mx-auto thumbnail">
-              <%= image_tag product.image.attached? ? product.image.variant(:page_display) : 'no_image.png', size: '64x64' %>
+              <%= image_tag product.image.attached? ? product.image.variant(:thumbnail) : 'no_image.png', size: '64x64' %>
             </div>
             <div class="card-body">
               <h5 class="card-title"><%= product.name %></h5>
