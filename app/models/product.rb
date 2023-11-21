@@ -12,4 +12,8 @@ class Product < ApplicationRecord
   scope :purchasable, -> {
     where(disabled: false)
   }
+
+  def price_with_tax
+    (price * 1.1).floor
+  end
 end

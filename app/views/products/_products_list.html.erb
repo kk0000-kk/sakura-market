@@ -11,7 +11,14 @@
             <div class="card-body">
               <h5 class="card-title"><%= product.name %></h5>
               <p class="card-text">
-                <%= number_with_delimiter(product.price) %>円（税抜）
+                <div class="stack">
+                  <div>
+                    <%= number_with_delimiter(product.price_with_tax) %>円（税込）
+                  </div>
+                  <div style="font-size: 0.8rem;">
+                    （ <%= number_with_delimiter(product.price) %>円（税抜））
+                  </div>
+                </div>
               </p>
               <p class="card-text">
                 <%= product.description %>
