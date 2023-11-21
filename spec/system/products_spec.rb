@@ -13,7 +13,8 @@ RSpec.describe 'Products', type: :system do
         visit root_path
         expect(page).to have_content 'メープルパン'
         expect(page).not_to have_content 'レーズンパン'
-        click_link '詳細', match: :first
+        link = find_by_id('product-show-link')
+        link.click
         expect(page).to have_current_path product_path(product)
         expect(page).to have_content 'メープルパン'
         expect(page).to have_content '108,641円'  # 税込価格: (98765 * 1.1).floor
