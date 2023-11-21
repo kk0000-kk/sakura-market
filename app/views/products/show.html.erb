@@ -7,16 +7,16 @@
     <table class="table table-bordered">
       <tbody>
         <tr>
-          <th scope="col">id</th>
-          <td scope="row"><%= @product.id %></td>
-        </tr>
-        <tr>
           <th scope="col">商品名</th>
           <td><%= @product.name %></td>
         </tr>
         <tr>
+          <th scope="col">価格（税込）</th>
+          <td><%= number_with_delimiter(@product.price_with_tax) %>円</td>
+        </tr>
+        <tr>
           <th scope="col">価格（税抜）</th>
-          <td><%= number_with_delimiter(@product.price) %></td>
+          <td><%= number_with_delimiter(@product.price) %>円</td>
         </tr>
         <tr>
           <th scope="col">説明</th>
