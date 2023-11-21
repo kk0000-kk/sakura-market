@@ -2,7 +2,7 @@
   <h2>商品詳細</h2>
   <div class="vstack gap-4">
     <div class="border text-center">
-      <%= @product.image.attached? ? (image_tag @product.image.variant(:page_display)) : '画像なし' %>
+      <%= image_tag @product.image.attached? ? @product.image.variant(:page_display) : 'no_image.png', size: '64x64' %>
     </div>
     <table class="table table-bordered">
       <tbody>
