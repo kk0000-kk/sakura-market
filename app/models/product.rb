@@ -9,9 +9,7 @@ class Product < ApplicationRecord
 
   acts_as_list
 
-  scope :purchasable, -> {
-    where(disabled: false)
-  }
+  scope :purchasable, -> { where(disabled: false) }
 
   def price_with_tax
     (price * 1.1).floor
