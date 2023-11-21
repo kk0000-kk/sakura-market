@@ -1,10 +1,10 @@
 <div class="container">
   <div class="vstack gap-3">
     <%= paginate products %>
-    <div class="row">
+    <div class="row gy-3">
       <% products.each do |product| %>
         <div class="col-12 col-md-6 col-lg-3 col-xl-2">
-          <div class="card text-center p-2 mb-3">
+          <div class="card text-center p-2">
             <div class="d-block mx-auto" style="width: 64px;">
               <%= image_tag product.image.attached? ? product.image.variant(:page_display) : 'no_image.png', size: '64x64' %>
             </div>
