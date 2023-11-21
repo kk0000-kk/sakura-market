@@ -14,7 +14,7 @@ RSpec.describe 'Carts', type: :system do
     context '未ログインの場合' do
       it 'ログインを求める' do
         visit root_path
-        click_link '詳細', match: :first
+        all('#product-show-link')[0].click
         click_button 'カートへ追加', match: :first
         expect(page).to have_current_path new_user_session_path
       end
@@ -24,7 +24,7 @@ RSpec.describe 'Carts', type: :system do
       it 'カートが作成され商品が追加される' do
         visit root_path
         login_as(user, scope: :user)
-        click_link '詳細', match: :first
+        all('#product-show-link')[0].click
 
         expect do
           click_button 'カートへ追加', match: :first
@@ -47,7 +47,7 @@ RSpec.describe 'Carts', type: :system do
       it 'まだカートに入っていない商品が追加される' do
         visit root_path
         login_as(user, scope: :user)
-        all('a', text: '詳細')[1].click
+        all('#product-show-link')[1].click
         expect(page).to have_content '食パン'
 
         expect do
@@ -62,7 +62,7 @@ RSpec.describe 'Carts', type: :system do
       it 'すでにカートに入っている商品の個数が追加される' do
         visit root_path
         login_as(user, scope: :user)
-        click_link '詳細', match: :first
+        all('#product-show-link')[0].click
         expect(page).to have_content 'メープルパン'
 
         expect do
