@@ -3,12 +3,13 @@
     <%= link_to 'さくらマーケット', root_path, class: 'navbar-brand' %>
     <ul class='navbar-nav'>
       <% if user_signed_in? %>
-        <div class='d-flex flex-row'>
-          <li class='nav-item mx-1'><%= link_to '設定', edit_user_registration_path, class: 'nav-link me-3' %></li>
-          <li class='nav-item mx-1'><%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: 'nav-link me-3' %></li>
+        <div class='d-flex flex-row gap-3'>
+          <li class='nav-item mx-1'><%= link_to '商品一覧', products_path, class: 'nav-link' %></li>
+          <li class='nav-item mx-1'><%= link_to '設定', edit_user_registration_path, class: 'nav-link' %></li>
+          <li class='nav-item mx-1'><%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete }, class: 'nav-link' %></li>
         </div>
       <% else %>
-        <li class='nav-item'><%= link_to 'ログイン', user_session_path, class: 'nav-link me-3' %></li>
+        <li class='nav-item'><%= link_to 'ログイン', user_session_path, class: 'nav-link' %></li>
       <% end %>
     </ul>
   </div>

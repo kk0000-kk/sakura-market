@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   end
 
   root 'static_pages#index'
-  get 'home', to: 'static_pages#home'
+  resources :products, only: %i[index show]
 end

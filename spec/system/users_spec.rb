@@ -5,12 +5,12 @@ RSpec.describe 'Users', type: :system do
     let!(:user) { create(:user, email: 'user@example.com', password: 'passwordpassword', password_confirmation: 'passwordpassword', nick_name: 'ニック') }
 
     context '認証情報が正しい場合' do
-      it 'ユーザーはログインすると、/homeにリダイレクトされる' do
+      it 'ユーザーはログインすると、/にリダイレクトされる' do
         visit new_user_session_path
         fill_in 'メールアドレス', with: 'user@example.com'
         fill_in 'パスワード', with: 'passwordpassword'
         click_button 'Log in'
-        expect(page).to have_current_path home_path
+        expect(page).to have_current_path root_path
       end
 
       it '未ログインでusers/editを開いて、userログインして、users/editにリダイレクトされる' do
