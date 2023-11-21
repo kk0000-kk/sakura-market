@@ -8,18 +8,17 @@ RSpec.describe 'Products', type: :system do
       create(:product, name: 'レーズンパン', price: 12345, description: '好き嫌いの激しいパンです', disabled: true, position: 2)
     end
 
-    context 'ユーザーがログインしていない場合でも' do
-      it '商品を閲覧できる' do
-        visit root_path
-        expect(page).to have_content 'メープルパン'
-        expect(page).not_to have_content 'レーズンパン'
-        click_link '詳細', match: :first
-        expect(page).to have_current_path product_path(product)
-        expect(page).to have_content 'メープルパン'
-        expect(page).to have_content '108,641円'  # 税込価格: (98765 * 1.1).floor
-        expect(page).to have_content '98,765円'
-        expect(page).to have_content '美味しいパンです'
-      end
+    it '商品を閲覧できる' do
+      visit root_path
+      expect(page).to have_content 'メープルパン'
+      expect(page).not_to have_content 'レーズンパン'
+      link = find_by_id('product-show-link')
+      link.click
+      expect(page).to have_current_path product_path(product)
+      expect(page).to have_content 'メープルパン'
+      expect(page).to have_content '108,641円'  # 税込価格: (98765 * 1.1).floor
+      expect(page).to have_content '98,765円'
+      expect(page).to have_content '美味しいパンです'
     end
   end
 end

@@ -1,31 +1,29 @@
 <div class="container">
   <div class="vstack gap-3">
     <%= paginate products %>
-    <div class="row">
+    <div class="row gy-3">
       <% products.each do |product| %>
-        <div class="col-3">
-          <div class="card text-center p-2 mb-3">
-            <div class="d-block mx-auto" style="width: 64px;">
-              <%= image_tag product.image.attached? ? product.image.variant(:page_display) : 'no_image.png', size: '64x64' %>
-            </div>
-            <div class="card-body">
-              <h5 class="card-title"><%= product.name %></h5>
-              <p class="card-text">
-                <div class="stack">
-                  <div>
-                    <%= number_with_delimiter(product.price_with_tax) %>円（税込）
+        <div class="col-12 col-md-6 col-lg-3 col-xl-2">
+          <%= link_to product_path(product), id: 'product-show-link', class: 'link-info link-underline link-underline-opacity-0 link-underline-opacity-100-hover' do %>
+            <div class="card text-center p-2">
+              <div class="d-block mx-auto thumbnail">
+                <%= product_image(product, :thumbnail, '64x64') %>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title"><%= product.name %></h5>
+                <p class="card-text">
+                  <div class="stack">
+                    <div>
+                      <%= number_with_delimiter(product.price_with_tax) %>円（税込）
+                    </div>
                   </div>
-                  <div style="font-size: 0.8rem;">
-                    （ <%= number_with_delimiter(product.price) %>円（税抜））
-                  </div>
-                </div>
-              </p>
-              <p class="card-text">
-                <%= product.description %>
-              </p>
-              <%= link_to '詳細', product_path(product), class: 'btn btn-primary btn-sm' %>
+                </p>
+                <p class="card-text">
+                  <%= product.description %>
+                </p>
+              </div>
             </div>
-          </div>
+          <% end %>
         </div>
       <% end %>
     </div>
