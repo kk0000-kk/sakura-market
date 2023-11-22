@@ -6,10 +6,7 @@ RSpec.describe 'Carts', type: :system do
   describe 'カートへ追加' do
     let!(:product) { create(:product, name: 'メープルパン', price: 98765, description: '美味しいパンです', disabled: false, position: 1) }
     let!(:other_product) { create(:product, name: '食パン', price: 3456, description: 'なんにでも使えます', disabled: false, position: 3) }
-
-    before do
-      create(:product, name: 'レーズンパン', price: 12345, description: '好き嫌いの激しいパンです', disabled: true, position: 2)
-    end
+    let!(:disabled_product) { create(:product, name: 'レーズンパン', price: 12345, description: '好き嫌いの激しいパンです', disabled: true, position: 2) }
 
     context '未ログインの場合' do
       it 'ログインを求める' do
@@ -72,6 +69,14 @@ RSpec.describe 'Carts', type: :system do
         end.to not_change(CartItem, :count).and not_change(Cart, :count)
 
         expect(CartItem.find_by(cart_id: cart.id, product_id: product.id)).to be_present
+      end
+
+      it '無効な商品は追加できない' do
+        visit root_path
+        login_as(user, scope: :user)
+        expect do
+          post cart_cart_items_path({ cart_item: { product_id: disabled_product.id, quantity: 1 } })
+        end.to not_change(CartItem, :count)
       end
     end
   end
