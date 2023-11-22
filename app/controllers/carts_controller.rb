@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: :show
+  before_action :authenticate_user!, only: :show
 
   def show
   end
@@ -7,6 +8,6 @@ class CartsController < ApplicationController
   private
 
   def set_cart
-    @cart = current_user.cart || current_user.create_cart
+    @cart = current_cart
   end
 end

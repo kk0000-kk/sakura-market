@@ -1,0 +1,32 @@
+<div class="card p-2">
+  <div class="row g-0 align-items-center">
+    <div class="col-2">
+      <div class="d-block mx-auto thumbnail">
+        <%= product_image(cart_item.product, :thumbnail, '64x64') %>
+      </div>
+    </div>
+    <div class="col-10">
+      <div class="card-body">
+        <h5 class="card-title"><%= cart_item.product.name %></h5>
+        <div class="hstack justify-content-between">
+          <div>
+            <p class="card-text">
+              <%= number_with_delimiter(cart_item.product.price_with_tax) %>円（税込）
+            </p>
+            <p class="card-text">
+              <%= cart_item.product.description %>
+            </p>
+          </div>
+          <div class="border-start ms-2 px-3">
+            <p class="card-text">
+              個数: <%= cart_item.quantity %>
+            </p>
+            <p class="card-text">
+              小計: <%= number_with_delimiter(cart_item.subtotal)  %>円（税込）
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
