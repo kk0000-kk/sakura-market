@@ -1,7 +1,9 @@
 <div class="container">
   <div class="vstack gap-3">
-    <%= @cart.cart_items.each do |cart_item| %>
+    <% @cart.cart_items.each do |cart_item| %>
       <%= render 'cart_item', cart_item: %>
     <% end %>
+    <%# TODO: とりあえずボタン置くためにlink_toで置いている %>
+    <%= link_to '購入へ進む', '#', class: 'btn btn-primary' %>
   </div>
 </div>
