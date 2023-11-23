@@ -7,7 +7,7 @@
     </div>
     <div class="col-10">
       <div class="card-body">
-        <h5 class="card-title"><%= cart_item.product.name %></h5>
+        <h5 class="card-title"><%= link_to cart_item.product.name, product_path(cart_item.product) %></h5>
         <div class="hstack justify-content-between">
           <div>
             <p class="card-text">
