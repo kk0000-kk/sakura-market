@@ -3,7 +3,17 @@
     <% @cart.cart_items.each do |cart_item| %>
       <%= render 'cart_item', cart_item: %>
     <% end %>
-    <%# TODO: とりあえずボタン置くためにlink_toで置いている %>
-    <%= link_to '購入へ進む', '#', class: 'btn btn-primary' %>
+    <div class="card border-info text-end">
+      <div class="card-body">
+        <h5 class="card-title">
+          合計: <%= number_with_delimiter(@cart.total_price_with_tax) %>円（税込）
+        </h5>
+        <p class="card-text">
+          <%= number_with_delimiter(@cart.total_price) %>円（税抜）
+        </p>
+        <%# TODO: とりあえずボタン置くためにlink_toで置いている %>
+        <%= link_to '購入へ進む', '#', class: 'btn btn-primary' %>
+      </div>
+    </div>
   </div>
 </div>
