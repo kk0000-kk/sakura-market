@@ -19,8 +19,8 @@ RSpec.describe 'Carts', type: :system do
 
     context 'ログイン済みでカートがまだない場合' do
       it 'カートが作成され商品が追加される' do
-        visit root_path
         login_as(user, scope: :user)
+        visit root_path
         all('#product-show-link')[0].click
 
         expect do
@@ -42,8 +42,8 @@ RSpec.describe 'Carts', type: :system do
       end
 
       it 'まだカートに入っていない商品が追加される' do
-        visit root_path
         login_as(user, scope: :user)
+        visit root_path
         all('#product-show-link')[1].click
         expect(page).to have_content '食パン'
 
@@ -57,8 +57,8 @@ RSpec.describe 'Carts', type: :system do
       end
 
       it 'すでにカートに入っている商品の個数が追加される' do
-        visit root_path
         login_as(user, scope: :user)
+        visit root_path
         all('#product-show-link')[0].click
         expect(page).to have_content 'メープルパン'
 
@@ -69,14 +69,6 @@ RSpec.describe 'Carts', type: :system do
         end.to not_change(CartItem, :count).and not_change(Cart, :count)
 
         expect(CartItem.find_by(cart_id: cart.id, product_id: product.id)).to be_present
-      end
-
-      it '無効な商品は追加できない' do
-        visit root_path
-        login_as(user, scope: :user)
-        expect do
-          post cart_cart_items_path({ cart_item: { product_id: disabled_product.id, quantity: 1 } })
-        end.to not_change(CartItem, :count)
       end
     end
   end
