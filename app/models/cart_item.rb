@@ -4,6 +4,11 @@ class CartItem < ApplicationRecord
 
   validates :quantity, numericality: { only_integer: true, greater_than: 0 }
 
+  def update_quantity!(additional_quantity)
+    new_quantity = quantity + additional_quantity.to_i
+    new_quantity.positive? ? update!(quantity: new_quantity) : destroy!
+  end
+
   def subtotal
     (quantity * product.price * 1.1).floor
   end

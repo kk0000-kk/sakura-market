@@ -18,11 +18,19 @@
             </p>
           </div>
           <div class="border-start ms-2 px-3">
-            <p class="card-text">
+            <div class="hstack gap-2 align-items-center">
               個数: <%= cart_item.quantity %>
-            </p>
-            <p class="card-text">
-              小計: <%= number_with_delimiter(cart_item.subtotal)  %>円（税込）
+              <%= button_to cart_cart_item_path(cart_item), params: { cart_item: { quantity: -1 } }, method: 'put', id: 'cart-item-minus-button',
+                                                            class: 'btn btn-outline-danger btn-sm' do %>
+                <i class="bi bi-dash-circle" aria-hidden="true"></i>
+              <% end %>
+              <%= button_to cart_cart_item_path(cart_item), params: { cart_item: { quantity: 1 } }, method: 'put', id: 'cart-item-plus-button',
+                                                            class: 'btn btn-primary btn-sm' do %>
+                <i class="bi bi-plus-circle" aria-hidden="true"></i>
+              <% end %>
+            </div>
+            <p class="card-text mt-2">
+              小計: <%= number_with_delimiter(cart_item.subtotal) %>円（税込）
             </p>
           </div>
         </div>
