@@ -1,6 +1,7 @@
 class Cart::CartItemsController < ApplicationController
   def create
-    current_cart.add_cart_item(cart_item_params[:product_id], cart_item_params[:quantity])
+    product = Product.purchasable.find(cart_item_params[:product_id])
+    current_cart.add_cart_item(product, cart_item_params[:quantity])
     redirect_to cart_url, notice: '商品をカートに追加しました'
   end
 
