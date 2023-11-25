@@ -14,10 +14,10 @@ class Cart < ApplicationRecord
   end
 
   def total_price
-    (cart_items.map { |item| item.product.price * item.quantity }).sum
+    cart_items.sum(&:subtotal)
   end
 
   def total_price_with_tax
-    (total_price * 1.1).floor
+    (total_price * TAX_FACTOR).floor
   end
 end

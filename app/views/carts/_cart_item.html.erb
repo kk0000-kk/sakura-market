@@ -30,7 +30,7 @@
               <% end %>
             </div>
             <p class="card-text mt-2">
-              小計: <%= number_with_delimiter(cart_item.subtotal) %>円（税込）
+              小計: <%= number_with_delimiter(cart_item.subtotal_with_tax) %>円（税込）
             </p>
           </div>
         </div>

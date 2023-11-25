@@ -10,6 +10,10 @@ class CartItem < ApplicationRecord
   end
 
   def subtotal
-    (quantity * product.price * 1.1).floor
+    quantity * product.price
+  end
+
+  def subtotal_with_tax
+    (subtotal * TAX_FACTOR).floor
   end
 end
