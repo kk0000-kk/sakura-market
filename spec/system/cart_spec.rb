@@ -19,11 +19,11 @@ RSpec.describe 'Carts', type: :system do
 
     context 'ログイン済みでカートがまだない場合' do
       it 'カートが作成され商品が追加される' do
-        login_as(user, scope: :user)
-        visit root_path
-        all('#product-show-link')[0].click
-
         expect do
+          login_as(user, scope: :user)
+          visit root_path
+          all('#product-show-link')[0].click
+
           click_button 'カートへ追加', match: :first
           expect(page).to have_current_path cart_path
           expect(page).to have_content '商品をカートに追加しました'
@@ -84,7 +84,7 @@ RSpec.describe 'Carts', type: :system do
       expect do
         all('#cart-item-plus-button')[0].click
         expect(page).to have_content '個数: 3'
-        expect(page).to have_content '小計: 325,924'  # (98765 * 3 = 296295) * 1.1 = 325924
+        expect(page).to have_content '小計（参考）: 325,924'  # (98765 * 3 = 296295) * 1.1 = 325924
         expect(page).to have_content '商品個数を更新しました'
       end.to change { cart_item.reload.quantity }.by(1)
     end
@@ -95,7 +95,7 @@ RSpec.describe 'Carts', type: :system do
       expect do
         all('#cart-item-minus-button')[0].click
         expect(page).to have_content '個数: 1'
-        expect(page).to have_content '小計: 108,641'  # 98765 * 1.1 = 108641
+        expect(page).to have_content '小計（参考）: 108,641'  # 98765 * 1.1 = 108641
         expect(page).to have_content '商品個数を更新しました'
       end.to change { cart_item.reload.quantity }.by(-1)
     end
@@ -106,7 +106,7 @@ RSpec.describe 'Carts', type: :system do
       expect do
         all('#cart-item-minus-button')[0].click
         expect(page).to have_content '個数: 1'
-        expect(page).to have_content '小計: 108,641'  # 98765 * 1.1 = 108641
+        expect(page).to have_content '小計（参考）: 108,641'  # 98765 * 1.1 = 108641
         expect(page).to have_content '商品個数を更新しました'
       end.to change { cart_item.reload.quantity }.by(-1)
 

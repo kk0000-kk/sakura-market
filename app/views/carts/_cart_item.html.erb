@@ -11,7 +11,7 @@
         <div class="hstack justify-content-between">
           <div>
             <p class="card-text">
-              <%= number_with_delimiter(cart_item.product.price_with_tax) %>円（税込）
+              <%= number_with_delimiter(cart_item.product.price) %>円（税抜）
             </p>
             <p class="card-text">
               <%= cart_item.product.description %>
@@ -30,7 +30,7 @@
               <% end %>
             </div>
             <p class="card-text mt-2">
-              小計: <%= number_with_delimiter(cart_item.subtotal_with_tax) %>円（税込）
+              小計（参考）: <%= number_with_delimiter(cart_item.subtotal_with_tax) %>円（税込）
             </p>
           </div>
         </div>
