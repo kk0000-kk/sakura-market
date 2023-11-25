@@ -1,6 +1,5 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: :show
-  before_action :authenticate_user!, only: :show
 
   def show
   end
