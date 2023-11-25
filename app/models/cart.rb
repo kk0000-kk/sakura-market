@@ -4,12 +4,9 @@ class Cart < ApplicationRecord
   has_many :cart_items, dependent: :destroy
 
   def add_cart_item(product, quantity)
-    cart_item = cart_items.find_by(product:)
-    if cart_item
-      cart_item.update!(quantity: cart_item.quantity + quantity.to_i)
-    else
-      cart_items.create!(product:, quantity:)
-    end
+    cart_item = cart_items.find_or_create_by(product:)
+    cart_item.quantity = (cart_item.quantity || 0) + quantity.to_i
+    cart_item.save!
   end
 
   def total_price
