@@ -8,8 +8,13 @@ class Cart::CartItemsController < ApplicationController
   end
 
   def update
-    @cart_item.update_quantity!(cart_item_params[:quantity])
-    redirect_to cart_url, notice: '商品個数を更新しました'
+    if cart_item_params[:quantity].to_i.zero?
+      @cart_item.destroy!
+      redirect_to cart_url, notice: '商品をカートから削除しました'
+    else
+      @cart_item.update!(quantity: cart_item_params[:quantity].to_i)
+      redirect_to cart_url, notice: '商品個数を更新しました'
+    end
   end
 
   def cart_item_params

@@ -113,7 +113,7 @@ RSpec.describe 'Carts', type: :system do
       expect do
         all('#cart-item-minus-button')[0].click
         expect(page).not_to have_content 'メープルパン'
-        expect(page).to have_content '商品個数を更新しました'
+        expect(page).to have_content '商品をカートから削除しました'
       end.to change(CartItem, :count).by(-1)
     end
   end
