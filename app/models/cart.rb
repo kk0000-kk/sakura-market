@@ -4,7 +4,7 @@ class Cart < ApplicationRecord
   has_many :cart_items, dependent: :destroy
 
   def add_cart_item(product, quantity)
-    cart_item = cart_items.find_or_create_by(product:)
+    cart_item = cart_items.find_or_initialize_by(product:)
     cart_item.quantity = cart_item.quantity.to_i
     cart_item.save!
   end
