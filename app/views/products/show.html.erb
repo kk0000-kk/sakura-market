@@ -25,7 +25,8 @@
       </tbody>
     </table>
     <div class="align-self-end">
-      <%= button_to 'カートへ追加', cart_cart_items_path, params: { cart_item: { product_id: @product.id, quantity: 1 } }, class: 'btn btn-primary' %>
+      <%= button_to 'カートへ追加', cart_cart_items_path, params: { cart_item: { product_id: @product.id, quantity: @cart_item_quantity + 1 } },
+                                                    class: 'btn btn-primary' %>
     </div>
   </div>
   <div class="mt-4">
