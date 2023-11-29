@@ -8,11 +8,12 @@ class Cart::CartItemsController < ApplicationController
   end
 
   def update
-    if cart_item_params[:quantity].to_i.zero?
+    quantity = cart_item_params[:quantity].to_i
+    if quantity == 0  # rubocop:disable all
       @cart_item.destroy!
       redirect_to cart_url, notice: '商品をカートから削除しました'
     else
-      @cart_item.update!(quantity: cart_item_params[:quantity].to_i)
+      @cart_item.update!(quantity:)
       redirect_to cart_url, notice: '商品個数を更新しました'
     end
   end
