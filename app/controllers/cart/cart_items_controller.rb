@@ -18,11 +18,11 @@ class Cart::CartItemsController < ApplicationController
     end
   end
 
+  private
+
   def cart_item_params
     params.require(:cart_item).permit(:product_id, :quantity)
   end
-
-  private
 
   def set_cart_item
     @cart_item = current_cart.cart_items.find(params[:id])
