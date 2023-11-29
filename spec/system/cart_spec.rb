@@ -11,7 +11,7 @@ RSpec.describe 'Carts', type: :system do
     context '未ログインの場合' do
       it 'ログインを求める' do
         visit root_path
-        all('#product-show-link')[0].click
+        find(:data_selector, "product-show-link-#{product.id}").click
         click_button 'カートへ追加', match: :first
         expect(page).to have_current_path new_user_session_path
       end
@@ -22,7 +22,7 @@ RSpec.describe 'Carts', type: :system do
         expect do
           login_as(user, scope: :user)
           visit root_path
-          all('#product-show-link')[0].click
+          find(:data_selector, "product-show-link-#{product.id}").click
 
           click_button 'カートへ追加', match: :first
           expect(page).to have_current_path cart_path
@@ -44,7 +44,7 @@ RSpec.describe 'Carts', type: :system do
       it 'まだカートに入っていない商品が追加される' do
         login_as(user, scope: :user)
         visit root_path
-        all('#product-show-link')[1].click
+        find(:data_selector, "product-show-link-#{other_product.id}").click
         expect(page).to have_content '食パン'
 
         expect do
@@ -59,7 +59,7 @@ RSpec.describe 'Carts', type: :system do
       it 'すでにカートに入っている商品の個数が追加される' do
         login_as(user, scope: :user)
         visit root_path
-        all('#product-show-link')[0].click
+        find(:data_selector, "product-show-link-#{product.id}").click
         expect(page).to have_content 'メープルパン'
 
         expect do
@@ -82,7 +82,7 @@ RSpec.describe 'Carts', type: :system do
       login_as(user, scope: :user)
       visit cart_path
       expect do
-        all('#cart-item-plus-button')[0].click
+        find(:data_selector, "cart-item-plus-button-#{cart_item.id}").click
         expect(page).to have_content '個数: 3'
         expect(page).to have_content '小計（参考）: 325,924'  # (98765 * 3 = 296295) * 1.1 = 325924
         expect(page).to have_content '商品個数を更新しました'
@@ -93,7 +93,7 @@ RSpec.describe 'Carts', type: :system do
       login_as(user, scope: :user)
       visit cart_path
       expect do
-        all('#cart-item-minus-button')[0].click
+        find(:data_selector, "cart-item-minus-button-#{cart_item.id}").click
         expect(page).to have_content '個数: 1'
         expect(page).to have_content '小計（参考）: 108,641'  # 98765 * 1.1 = 108641
         expect(page).to have_content '商品個数を更新しました'
@@ -104,14 +104,14 @@ RSpec.describe 'Carts', type: :system do
       login_as(user, scope: :user)
       visit cart_path
       expect do
-        all('#cart-item-minus-button')[0].click
+        find(:data_selector, "cart-item-minus-button-#{cart_item.id}").click
         expect(page).to have_content '個数: 1'
         expect(page).to have_content '小計（参考）: 108,641'  # 98765 * 1.1 = 108641
         expect(page).to have_content '商品個数を更新しました'
       end.to change { cart_item.reload.quantity }.by(-1)
 
       expect do
-        all('#cart-item-minus-button')[0].click
+        find(:data_selector, "cart-item-minus-button-#{cart_item.id}").click
         expect(page).not_to have_content 'メープルパン'
         expect(page).to have_content '商品をカートから削除しました'
       end.to change(CartItem, :count).by(-1)
