@@ -1,5 +1,5 @@
 <div class="container">
-  <% if current_cart.cart_items.count > 0 %>
+  <% if current_cart.cart_items.present? %>
     <%= render 'cart' %>
   <% else %>
     <div class="card">
