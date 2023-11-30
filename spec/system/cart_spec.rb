@@ -81,7 +81,7 @@ RSpec.describe 'Carts', type: :system do
         expect do
           click_button 'カートへ追加', match: :first
           expect(page).to have_current_path cart_path
-          expect(page).to have_content '商品をカートに追加しました'
+          expect(page).to have_content '商品個数を更新しました'
         end.to not_change(CartItem, :count).and not_change(Cart, :count)
 
         expect(page).to have_content 'メープルパン'
