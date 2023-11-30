@@ -5,3 +5,6 @@ AllCops:
   Exclude:
     - "db/**/*"
     - "bin/**/*"
+
+Style/NumericPredicate:
+  Enabled: false
