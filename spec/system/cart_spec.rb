@@ -16,33 +16,12 @@ RSpec.describe 'Carts', type: :system do
     end
 
     context 'ログイン済みでカートがまだない場合' do
-      let!(:product) { create(:product, name: 'メープルパン', price: 98765, description: '美味しいパンです', disabled: false, position: 1) }
-
-      it 'カートが作成され商品が追加される' do
+      it 'カートが作成される' do
         login_as(user, scope: :user)
         expect do
           # ヘッダーでカートの情報を使っているので表示時点でカートが作成される
           visit root_path
         end.to change(Cart, :count).by(1)
-
-        find(:data_selector, dom_id(product, :show_link)).click
-
-        expect do
-          click_button 'カートへ追加', match: :first
-          expect(page).to have_current_path cart_path
-          expect(page).to have_content '商品をカートに追加しました'
-        end.to change(CartItem, :count).by(1)
-
-        expect(page).to have_content 'メープルパン'
-        expect(page).to have_content '98,765円（税抜）'
-        expect(page).to have_content '美味しいパンです'
-        expect(page).to have_content '個数: 1'
-        expect(page).to have_content '小計（参考）: 108,641円（税込）' # 税込価格: (98765 * 1.1).floor
-        expect(page).to have_content '合計: 108,641円（税込）'
-        expect(page).to have_content '98,765円（税抜）' # 合計の税抜
-
-        cart = Cart.last
-        expect(CartItem.find_by(cart_id: cart.id, product_id: product.id)).to be_present
       end
     end
 
@@ -73,7 +52,7 @@ RSpec.describe 'Carts', type: :system do
         expect(page).to have_content '合計: 112,443円（税込）' # (98765 + 3456) * 1.1
         expect(page).to have_content '102,221円（税抜）' # 合計の税抜: 98765 + 3456
 
-        expect(CartItem.find_by(cart_id: cart.id, product_id: other_product.id)).to be_present
+        expect(cart.cart_items.find_by(product: other_product)).to be_present
       end
 
       it 'すでにカートに入っている商品の個数が追加される' do
@@ -94,7 +73,7 @@ RSpec.describe 'Carts', type: :system do
         expect(page).to have_content '合計: 217,283円（税込）'
         expect(page).to have_content '197,530円（税抜）' # 合計の税抜: 98765 * 2
 
-        expect(CartItem.find_by(cart_id: cart.id, product_id: product.id)).to be_present
+        expect(cart.cart_items.find_by(product:)).to be_present
       end
     end
   end
