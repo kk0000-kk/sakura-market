@@ -9,7 +9,7 @@ RSpec.describe 'Carts', type: :system do
 
       it 'ログインを求める' do
         visit root_path
-        find(:data_selector, "product-show-link-#{product.id}").click
+        find(:data_selector, dom_id(product, :show_link)).click
         click_button 'カートへ追加', match: :first
         expect(page).to have_current_path new_user_session_path
       end
@@ -25,7 +25,7 @@ RSpec.describe 'Carts', type: :system do
           visit root_path
         end.to change(Cart, :count).by(1)
 
-        find(:data_selector, "product-show-link-#{product.id}").click
+        find(:data_selector, dom_id(product, :show_link)).click
 
         expect do
           click_button 'カートへ追加', match: :first
@@ -108,7 +108,7 @@ RSpec.describe 'Carts', type: :system do
       login_as(user, scope: :user)
       visit cart_path
       expect do
-        find(:data_selector, "cart-item-plus-button-#{cart_item.id}").click
+        find(:data_selector, dom_id(cart_item, :plus_button)).click
         expect(page).to have_content '商品個数を更新しました'
       end.to change { cart_item.reload.quantity }.by(1)
 
@@ -120,7 +120,7 @@ RSpec.describe 'Carts', type: :system do
       login_as(user, scope: :user)
       visit cart_path
       expect do
-        find(:data_selector, "cart-item-minus-button-#{cart_item.id}").click
+        find(:data_selector, dom_id(cart_item, :minus_button)).click
         expect(page).to have_content '商品個数を更新しました'
       end.to change { cart_item.reload.quantity }.by(-1)
 
@@ -132,7 +132,7 @@ RSpec.describe 'Carts', type: :system do
       login_as(user, scope: :user)
       visit cart_path
       expect do
-        find(:data_selector, "cart-item-minus-button-#{cart_item.id}").click
+        find(:data_selector, dom_id(cart_item, :minus_button)).click
         expect(page).to have_content '商品個数を更新しました'
       end.to change { cart_item.reload.quantity }.by(-1)
 
@@ -140,7 +140,7 @@ RSpec.describe 'Carts', type: :system do
       expect(page).to have_content '小計（参考）: 108,641'  # 98765 * 1.1 = 108641
 
       expect do
-        find(:data_selector, "cart-item-minus-button-#{cart_item.id}").click
+        find(:data_selector, dom_id(cart_item, :minus_button)).click
         expect(page).to have_content '商品をカートから削除しました'
       end.to change(CartItem, :count).by(-1)
 
