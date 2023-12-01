@@ -5,7 +5,7 @@ class Cart < ApplicationRecord
 
   def add_cart_item(product, quantity)
     cart_item = cart_items.find_or_initialize_by(product:)
-    cart_item.quantity = quantity.to_i
+    cart_item.quantity = quantity
     cart_item.save!
   end
 
