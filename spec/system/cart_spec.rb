@@ -3,6 +3,18 @@ require 'rails_helper'
 RSpec.describe 'Carts', type: :system do
   let!(:user) { create(:user) }
 
+  describe 'カート作成' do
+    context 'ログイン済みでカートがまだない場合' do
+      it 'カートが作成される' do
+        login_as(user, scope: :user)
+        expect do
+          # ヘッダーでカートの情報を使っているので表示時点でカートが作成される
+          visit root_path
+        end.to change(Cart, :count).by(1)
+      end
+    end
+  end
+
   describe 'カートへ追加' do
     context '未ログインの場合' do
       let!(:product) { create(:product, name: 'メープルパン', price: 98765, description: '美味しいパンです', disabled: false, position: 1) }
@@ -12,16 +24,6 @@ RSpec.describe 'Carts', type: :system do
         find(:data_selector, dom_id(product, :show_link)).click
         click_button 'カートへ追加', match: :first
         expect(page).to have_current_path new_user_session_path
-      end
-    end
-
-    context 'ログイン済みでカートがまだない場合' do
-      it 'カートが作成される' do
-        login_as(user, scope: :user)
-        expect do
-          # ヘッダーでカートの情報を使っているので表示時点でカートが作成される
-          visit root_path
-        end.to change(Cart, :count).by(1)
       end
     end
 
@@ -95,19 +97,7 @@ RSpec.describe 'Carts', type: :system do
       expect(page).to have_content '小計（参考）: 325,924'  # (98765 * 3 = 296295) * 1.1 = 325924
     end
 
-    it('カート内の商品の個数を減らす') do
-      login_as(user, scope: :user)
-      visit cart_path
-      expect do
-        find(:data_selector, dom_id(cart_item, :minus_button)).click
-        expect(page).to have_content '商品個数を更新しました'
-      end.to change { cart_item.reload.quantity }.by(-1)
-
-      expect(page).to have_content '個数: 1'
-      expect(page).to have_content '小計（参考）: 108,641'  # 98765 * 1.1 = 108641
-    end
-
-    it('カート内の商品を削除する') do
+    it('カート内の商品の個数を減らして削除') do
       login_as(user, scope: :user)
       visit cart_path
       expect do
