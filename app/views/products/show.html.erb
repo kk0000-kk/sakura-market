@@ -24,6 +24,15 @@
         </tr>
       </tbody>
     </table>
+    <div class="align-self-end">
+      <% if @cart_item.present?  %>
+        <%= button_to 'カートへ追加', cart_cart_item_path(@cart_item), method: 'put', params: { cart_item: { product_id: @product.id, quantity: @cart_item.quantity + 1 } },
+                                                                 class: 'btn btn-primary' %>
+      <% else %>
+        <%= button_to 'カートへ追加', cart_cart_items_path, params: { cart_item: { product_id: @product.id, quantity: 1 } },
+                                                      class: 'btn btn-primary' %>
+      <% end %>
+    </div>
   </div>
   <div class="mt-4">
     <%= link_to '一覧へ戻る', products_path %>

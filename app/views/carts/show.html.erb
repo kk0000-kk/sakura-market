@@ -1,0 +1,12 @@
+<div class="container">
+  <% if current_cart.cart_items.present? %>
+    <%= render 'cart' %>
+  <% else %>
+    <div class="card">
+      <div class="card-body text-center">
+        <h5 class="card-title">カートに商品がありません</h5>
+        <%= link_to '商品一覧へ', products_path, class: 'btn btn-primary' %>
+      </div>
+    </div>
+  <% end %>
+</div>

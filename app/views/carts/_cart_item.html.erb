@@ -1,0 +1,40 @@
+<div class="card p-2">
+  <div class="row g-0 align-items-center">
+    <div class="col-2">
+      <div class="d-block mx-auto thumbnail">
+        <%= product_image(cart_item.product, :thumbnail, '64x64') %>
+      </div>
+    </div>
+    <div class="col-10">
+      <div class="card-body">
+        <h5 class="card-title"><%= link_to cart_item.product.name, product_path(cart_item.product) %></h5>
+        <div class="hstack justify-content-between">
+          <div>
+            <p class="card-text">
+              <%= number_with_delimiter(cart_item.product.price) %>円（税抜）
+            </p>
+            <p class="card-text">
+              <%= cart_item.product.description %>
+            </p>
+          </div>
+          <div class="border-start ms-2 px-3">
+            <div class="hstack gap-2 align-items-center">
+              個数: <%= cart_item.quantity %>
+              <%= button_to cart_cart_item_path(cart_item), params: { cart_item: { quantity: cart_item.quantity - 1 } }, method: 'put',
+                                                            class: 'btn btn-outline-danger btn-sm', 'data-test-id': dom_id(cart_item, :minus_button) do %>
+                <i class="bi bi-dash-circle" aria-hidden="true"></i>
+              <% end %>
+              <%= button_to cart_cart_item_path(cart_item), params: { cart_item: { quantity: cart_item.quantity + 1 } }, method: 'put',
+                                                            class: 'btn btn-primary btn-sm', 'data-test-id': dom_id(cart_item, :plus_button) do %>
+                <i class="bi bi-plus-circle" aria-hidden="true"></i>
+              <% end %>
+            </div>
+            <p class="card-text mt-2">
+              小計（参考）: <%= number_with_delimiter(cart_item.subtotal_with_tax) %>円（税込）
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

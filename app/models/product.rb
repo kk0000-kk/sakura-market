@@ -3,6 +3,7 @@ class Product < ApplicationRecord
     attachable.variant :page_display, resize_to_limit: [500, 500]
     attachable.variant :thumbnail, resize_to_limit: [64, 64]
   end
+  has_one :cart_item, dependent: :destroy
 
   validates :name, presence: true
   validates :price, presence: true, numericality: { greater_than: 0 }
