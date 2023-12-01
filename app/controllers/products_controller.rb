@@ -7,6 +7,6 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.purchasable.find(params[:id])
-    @cart_item = current_cart&.cart_items&.find_or_initialize_by(product: @product)
+    @cart_item = current_cart&.cart_items&.find_by(product: @product)
   end
 end
